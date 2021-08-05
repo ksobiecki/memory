@@ -1,9 +1,19 @@
-import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
+
+import { State } from '../redux/reducers';
+import * as userActionCreators from '../redux/action-creators/userActionCreators';
 
 const Landing = () => {
 	const history = useHistory();
-	const [username, setUsername] = useState('');
+
+	const dispatch = useDispatch();
+	const { setUsername } = bindActionCreators(userActionCreators, dispatch);
+
+	const username = useSelector((state: State) => state.user);
+
+	console.log('username', username);
 
 	const userInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setUsername(e.target.value);
@@ -31,7 +41,9 @@ const Landing = () => {
 					onChange={userInputHandler}
 				/>
 			</div>
-			<button onClick={startButtonHandler}>Start Game</button>
+			<button onClick={startButtonHandler} disabled={username.length === 0}>
+				Start Game
+			</button>
 		</div>
 	);
 };

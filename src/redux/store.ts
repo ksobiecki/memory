@@ -5,6 +5,8 @@ import reducers from './reducers';
 
 const initialState = {};
 
-const store = createStore(reducers, initialState, applyMiddleware(thunk));
-
-export default store;
+export const store = createStore(
+	reducers,
+	initialState,
+	applyMiddleware(thunk),
+);
