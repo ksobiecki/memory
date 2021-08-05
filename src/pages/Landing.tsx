@@ -17,7 +17,7 @@ const Landing = () => {
 	};
 
 	return (
-		<div className="landing-container">
+		<div className="page-layout landing-container">
 			<h1 className="title">Memory Game</h1>
 			<div className="input-container">
 				<label className="label" htmlFor="username">
