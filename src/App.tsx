@@ -1,4 +1,4 @@
-import Routes from './components/Routes/Routes';
+import Routes from './components/Routes';
 
 const App = () => {
 	return (

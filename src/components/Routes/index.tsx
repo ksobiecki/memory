@@ -7,7 +7,7 @@ import Scoreboard from '../../pages/Scoreboard';
 import NotFound from '../../pages/NotFound';
 
 const Routes = () => (
-	<Suspense>
+	<Suspense fallback={<div>Loading ...</div>}>
 		<Switch>
 			<Route path="/" exact>
 				<Landing />
