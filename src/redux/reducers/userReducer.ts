@@ -1,4 +1,4 @@
-import { UserActionType } from '../action-types/userActionsTypes';
+import { UserActionType } from '../actions/action-types/userActionsTypes';
 
 const initialState = '';
 
