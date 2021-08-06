@@ -1,12 +1,17 @@
+import { useSelector } from 'react-redux';
+
 import GameBoard from '../components/Game/GameBoard';
+import { State } from '../redux/reducers';
 
 const Game = () => {
-	const NUMBER_OF_TRIES = 20;
+	const counter = useSelector((state: State) => state.counter);
 
 	return (
 		<div className="game-container">
 			<GameBoard />
-			<div className="counter">Number of tries: {NUMBER_OF_TRIES}</div>
+			<div className="counter">
+				Number of tries: <strong>{counter}</strong>
+			</div>
 		</div>
 	);
 };

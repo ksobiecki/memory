@@ -8,26 +8,4 @@
     text-transform: uppercase;
     margin-bottom: 40px;
   }
-
-  .button {
-    width: 200px;
-    margin-top: 50px;
-    padding: 15px;
-    background: $main-color;
-    color: white;
-    outline: 0;
-    border: 0;
-    font-size: 18px;
-    font-weight: bold;
-    border-radius: 5px;
-
-    &:disabled {
-      opacity: 0.5;
-    }
-
-    &:hover:enabled{
-      cursor: pointer;
-      background-color: $main-color-hover;
-    }
-  }
 }

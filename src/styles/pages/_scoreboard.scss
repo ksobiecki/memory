@@ -1,0 +1,14 @@
+.scoreboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .username {
+    font-size: 40px;
+  }
+
+  .score {
+    font-size: 40px;
+    font-weight: bold;
+  }
+}

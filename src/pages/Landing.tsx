@@ -22,7 +22,7 @@ const Landing = () => {
 			<button
 				onClick={startButtonHandler}
 				disabled={username.length === 0}
-				className="button"
+				className="shared-button"
 			>
 				Start Game
 			</button>
