@@ -1,10 +1,11 @@
 import Routes from './components/Routes';
+import PageLayout from './components/Shared/PageLayout';
 
 const App = () => {
 	return (
-		<div>
+		<PageLayout>
 			<Routes />
-		</div>
+		</PageLayout>
 	);
 };
 
