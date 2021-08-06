@@ -12,11 +12,23 @@
 
   .button {
     width: 200px;
-    height: 50px;
-    border-radius: 10px;
-    outline: 0;
-    border-color: skyblue;
-    background-color: lightskyblue;
     margin-top: 40px;
+    padding: 15px;
+    background: #7E00A2;
+    color: white;
+    outline: 0;
+    border: 0;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+
+    &:disabled {
+      opacity: 0.5;
+    }
+
+    &:hover:enabled{
+      cursor: pointer;
+      background-color: #8F11B3;
+    }
   }
 }
