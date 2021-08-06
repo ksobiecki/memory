@@ -12,9 +12,9 @@
 
   .button {
     width: 200px;
-    margin-top: 40px;
+    margin-top: 50px;
     padding: 15px;
-    background: #7E00A2;
+    background: $main-color;
     color: white;
     outline: 0;
     border: 0;
@@ -28,7 +28,7 @@
 
     &:hover:enabled{
       cursor: pointer;
-      background-color: #8F11B3;
+      background-color: $main-color-hover;
     }
   }
 }

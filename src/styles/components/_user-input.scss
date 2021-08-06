@@ -1,0 +1,15 @@
+.user-input-container {
+  display: flex;
+  flex-direction: column;
+
+  .label {
+    margin-bottom: 5px;
+  }
+
+  .input {
+    width: 300px;
+    height: 40px;
+    border-radius: 5px;
+    border: 2px solid $main-color;
+  }
+}
