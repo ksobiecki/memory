@@ -1,11 +1,14 @@
-import { useSelector } from 'react-redux';
-
-import { State } from '../redux/reducers';
+import GameBoard from '../components/Game/GameBoard';
 
 const Game = () => {
-	const username = useSelector((state: State) => state.user);
+	const NUMBER_OF_TRIES = 20;
 
-	return <div>{username}</div>;
+	return (
+		<div className="game-container">
+			<GameBoard />
+			<div className="counter">Number of tries: {NUMBER_OF_TRIES}</div>
+		</div>
+	);
 };
 
 export default Game;
