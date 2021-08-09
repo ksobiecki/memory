@@ -1,21 +1,21 @@
 .shared-button {
-  width: 200px;
-  margin-top: 50px;
-  padding: 15px;
-  background: $main-color;
-  color: white;
-  outline: 0;
-  border: 0;
-  font-size: 18px;
-  font-weight: bold;
-  border-radius: 5px;
+	width: 200px;
+	margin-top: 40px;
+	padding: 15px;
+	background: $main-color;
+	color: white;
+	outline: 0;
+	border: 0;
+	font-size: 18px;
+	font-weight: bold;
+	border-radius: 5px;
 
-  &:disabled {
-    opacity: 0.5;
-  }
+	&:disabled {
+		opacity: 0.5;
+	}
 
-  &:hover:enabled{
-    cursor: pointer;
-    background-color: $main-color-hover;
-  }
+	&:hover:enabled {
+		cursor: pointer;
+		background-color: $main-color-hover;
+	}
 }
