@@ -54,6 +54,7 @@ const gameboardReducer = (
 						isVisible: false,
 					};
 				}),
+				cardsFlipped: 0,
 			};
 		case GameboardActions.LOCK_CARDS:
 			return {

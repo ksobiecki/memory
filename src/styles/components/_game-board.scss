@@ -3,8 +3,10 @@
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(4, 1fr);
     grid-gap: 10px;
-    height: 70vh;
-    width: 70vh;
+    height: 80vw;
+    width: 80vw;
+    max-width: 700px;
+    max-height: 700px;
 
     .game-card-container {
       position: relative;
