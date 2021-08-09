@@ -3,8 +3,13 @@
   flex-direction: column;
   align-items: center;
 
-  .username {
-    font-size: 40px;
+  .header {
+    font-size: 50px;
+    margin-bottom: 30px;
+  }
+
+  .subheader {
+    font-size: 30px;
   }
 
   .score {

@@ -21,7 +21,8 @@ const Scoreboard = () => {
 
 	return (
 		<div className="scoreboard-container">
-			<p className="username">{username}</p>
+			<h1 className="header">You win {username}!</h1>
+			<p className="subheader">Number of turns:</p>
 			<p className="score">{counter}</p>
 			<button onClick={restartButtonHandler} className="shared-button">
 				Restart Game

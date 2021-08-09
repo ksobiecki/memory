@@ -8,6 +8,15 @@ import { counterActionCreators, gameboardActionCreators } from '../../../redux';
 import { State } from '../../../redux/reducers';
 import { GameCardType } from './types';
 
+// Fisher-Yates algorithm for shuffling array of cards
+const shuffleArray = (array: GameCardType[]) => {
+	for (let i = array.length - 1; i > 0; i--) {
+		const j = Math.floor(Math.random() * (i + 1));
+		[array[i], array[j]] = [array[j], array[i]];
+	}
+	return array;
+};
+
 const GameBoard = () => {
 	const history = useHistory();
 
@@ -35,15 +44,6 @@ const GameBoard = () => {
 		if (cardsFlipped === cardList.length) {
 			history.push('/scoreboard');
 		}
-	};
-
-	// Fisher-Yates algorithm for shuffling array of cards
-	const shuffleArray = (array: GameCardType[]) => {
-		for (let i = array.length - 1; i > 0; i--) {
-			const j = Math.floor(Math.random() * (i + 1));
-			[array[i], array[j]] = [array[j], array[i]];
-		}
-		return array;
 	};
 
 	useEffect(() => {
