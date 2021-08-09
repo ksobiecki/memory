@@ -11,4 +11,24 @@ interface ToggleCardVisibility {
 	payload: string;
 }
 
-export type GameboardActionType = ResetCards | ToggleCardVisibility;
+interface LockCards {
+	type: GameboardActions.LOCK_CARDS;
+	payload: boolean;
+}
+
+interface SetFirstCard {
+	type: GameboardActions.SET_FIRST_CARD;
+	payload: string;
+}
+
+interface incrementCardsFlipped {
+	type: GameboardActions.INCREMENT_CARDS_FLIPPED;
+	payload: number;
+}
+
+export type GameboardActionType =
+	| ResetCards
+	| ToggleCardVisibility
+	| LockCards
+	| SetFirstCard
+	| incrementCardsFlipped;

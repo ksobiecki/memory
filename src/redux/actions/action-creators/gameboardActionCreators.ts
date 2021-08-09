@@ -21,3 +21,30 @@ export const resetCards = (shuffledCardList: GameCardType[]) => {
 		});
 	};
 };
+
+export const lockCards = (isLocked: boolean) => {
+	return (dispatch: Dispatch<GameboardActionType>) => {
+		dispatch({
+			type: GameboardActions.LOCK_CARDS,
+			payload: isLocked,
+		});
+	};
+};
+
+export const setFirstCard = (firstCard: string) => {
+	return (dispatch: Dispatch<GameboardActionType>) => {
+		dispatch({
+			type: GameboardActions.SET_FIRST_CARD,
+			payload: firstCard,
+		});
+	};
+};
+
+export const incrementCardsFlipped = (iterator: number) => {
+	return (dispatch: Dispatch<GameboardActionType>) => {
+		dispatch({
+			type: GameboardActions.INCREMENT_CARDS_FLIPPED,
+			payload: iterator,
+		});
+	};
+};

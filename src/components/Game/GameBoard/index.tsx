@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
@@ -20,11 +20,7 @@ const shuffleArray = (array: GameCardType[]) => {
 const GameBoard = () => {
 	const history = useHistory();
 
-	const [cardsFlipped, setCardsFlipped] = useState(0);
-	const [firstCardNumber, setFirstCardNumber] = useState('');
-	const [isLocked, setIsLocked] = useState(false);
-
-	const cardList: GameCardType[] = useSelector(
+	const { cardList, isLocked, firstCard, cardsFlipped } = useSelector(
 		(state: State) => state.gameboard,
 	);
 
@@ -35,10 +31,13 @@ const GameBoard = () => {
 		dispatch,
 	);
 
-	const { toggleCardVisibility, resetCards } = bindActionCreators(
-		gameboardActionCreators,
-		dispatch,
-	);
+	const {
+		toggleCardVisibility,
+		resetCards,
+		setFirstCard,
+		incrementCardsFlipped,
+		lockCards,
+	} = bindActionCreators(gameboardActionCreators, dispatch);
 
 	const checkIfFinished = () => {
 		if (cardsFlipped === cardList.length) {
@@ -57,24 +56,24 @@ const GameBoard = () => {
 	const cardClickHandler = (cardNumber: string) => {
 		if (!isLocked) {
 			toggleCardVisibility(cardNumber);
-			if (!firstCardNumber) {
-				setFirstCardNumber(cardList[parseInt(cardNumber)].id);
+			if (!firstCard) {
+				setFirstCard(cardList[parseInt(cardNumber)].id);
 			} else {
 				if (
 					cardList[parseInt(cardNumber)].color ===
-					cardList[parseInt(firstCardNumber)].color
+					cardList[parseInt(firstCard)].color
 				) {
-					setCardsFlipped((prev) => prev + 2);
+					incrementCardsFlipped(2);
 					incrementCounter(1);
-					setFirstCardNumber('');
+					setFirstCard('');
 				} else {
 					incrementCounter(1);
-					setFirstCardNumber('');
-					setIsLocked(true);
+					setFirstCard('');
+					lockCards(true);
 					setTimeout(() => {
 						toggleCardVisibility(cardNumber);
-						toggleCardVisibility(firstCardNumber);
-						setIsLocked(false);
+						toggleCardVisibility(firstCard);
+						lockCards(false);
 					}, 1000);
 				}
 			}
