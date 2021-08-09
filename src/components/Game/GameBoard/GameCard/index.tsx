@@ -21,18 +21,20 @@ const GameCard: React.FC<GameCardInterface> = ({
 
 	return (
 		<div className="game-card-container">
-			<div
-				className={`front card ${isVisible ? 'visible' : ''}`}
-				style={{ backgroundColor: color }}
-			>
-				{color}
-			</div>
-			<div
-				onClick={cardClickHandler}
-				className={`back card ${!isVisible ? 'visible' : ''}`}
-			>
-				<img src={cardBack} alt="Card back" />
-			</div>
+			{isVisible && (
+				<div
+					className={`front card ${isVisible ? 'flip-in' : 'flip-out'}`}
+					style={{ backgroundColor: color }}
+				></div>
+			)}
+			{!isVisible && (
+				<div
+					onClick={cardClickHandler}
+					className={`back card ${isVisible ? 'flip-out' : 'flip-in'}`}
+				>
+					<img src={cardBack} alt="Card back" />
+				</div>
+			)}
 		</div>
 	);
 };
