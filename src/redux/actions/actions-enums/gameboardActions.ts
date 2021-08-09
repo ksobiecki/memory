@@ -1,3 +1,4 @@
 export enum GameboardActions {
 	TOGGLE_CARD_VISIBILITY = 'TOGGLE_CARD_VISIBILITY',
+	RESET_CARDS = 'RESET_CARDS',
 }

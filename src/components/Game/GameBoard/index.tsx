@@ -13,6 +13,7 @@ const GameBoard = () => {
 
 	const [cardsFlipped, setCardsFlipped] = useState(0);
 	const [firstCardNumber, setFirstCardNumber] = useState('');
+	const [isLocked, setIsLocked] = useState(false);
 
 	const cardList: GameCardType[] = useSelector(
 		(state: State) => state.gameboard,
@@ -25,15 +26,10 @@ const GameBoard = () => {
 		dispatch,
 	);
 
-	const { toggleCardVisibility } = bindActionCreators(
+	const { toggleCardVisibility, resetCards } = bindActionCreators(
 		gameboardActionCreators,
 		dispatch,
 	);
-
-	useEffect(() => {
-		checkIfFinished();
-		console.log(cardList);
-	}, [cardsFlipped]);
 
 	const checkIfFinished = () => {
 		if (cardsFlipped === cardList.length) {
@@ -41,22 +37,46 @@ const GameBoard = () => {
 		}
 	};
 
+	// Fisher-Yates algorithm for shuffling array of cards
+	const shuffleArray = (array: GameCardType[]) => {
+		for (let i = array.length - 1; i > 0; i--) {
+			const j = Math.floor(Math.random() * (i + 1));
+			[array[i], array[j]] = [array[j], array[i]];
+		}
+		return array;
+	};
+
+	useEffect(() => {
+		resetCards(shuffleArray(cardList));
+	}, []);
+
+	useEffect(() => {
+		checkIfFinished();
+	}, [cardsFlipped]);
+
 	const cardClickHandler = (cardNumber: string) => {
-		if (!firstCardNumber) {
-			setFirstCardNumber(cardList[parseInt(cardNumber)].id);
-		} else {
-			if (
-				cardList[parseInt(cardNumber)].color ===
-				cardList[parseInt(firstCardNumber)].color
-			) {
-				setCardsFlipped((prev) => prev + 2);
-				incrementCounter(1);
-				setFirstCardNumber('');
+		if (!isLocked) {
+			toggleCardVisibility(cardNumber);
+			if (!firstCardNumber) {
+				setFirstCardNumber(cardList[parseInt(cardNumber)].id);
 			} else {
-				incrementCounter(1);
-				setFirstCardNumber('');
-				toggleCardVisibility(cardNumber);
-				toggleCardVisibility(firstCardNumber);
+				if (
+					cardList[parseInt(cardNumber)].color ===
+					cardList[parseInt(firstCardNumber)].color
+				) {
+					setCardsFlipped((prev) => prev + 2);
+					incrementCounter(1);
+					setFirstCardNumber('');
+				} else {
+					incrementCounter(1);
+					setFirstCardNumber('');
+					setIsLocked(true);
+					setTimeout(() => {
+						toggleCardVisibility(cardNumber);
+						toggleCardVisibility(firstCardNumber);
+						setIsLocked(false);
+					}, 1000);
+				}
 			}
 		}
 	};

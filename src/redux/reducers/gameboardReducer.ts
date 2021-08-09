@@ -1,11 +1,6 @@
+import { GameCardType } from './../../components/Game/GameBoard/types';
 import { GameboardActions } from '../actions/actions-enums/gameboardActions';
 import { GameboardActionType } from './../actions/action-types/gameboardActionTypes';
-
-interface GameCardType {
-	id: string;
-	color: string;
-	isVisible: boolean;
-}
 
 const initialState = [
 	{ id: '0', color: 'red', isVisible: false },
@@ -40,6 +35,16 @@ const gameboardReducer = (
 					return {
 						...card,
 						isVisible: !card.isVisible,
+					};
+				}),
+			];
+		case GameboardActions.RESET_CARDS:
+			return [
+				...state.map((card: GameCardType, index) => {
+					return {
+						...card,
+						id: index.toString(),
+						isVisible: false,
 					};
 				}),
 			];

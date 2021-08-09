@@ -1,9 +1,6 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
 import cardBack from '../../../../images/card-back.jpg';
-import { gameboardActionCreators } from '../../../../redux';
 
 interface GameCardInterface {
 	id: string;
@@ -18,16 +15,8 @@ const GameCard: React.FC<GameCardInterface> = ({
 	isVisible,
 	onCardClick,
 }) => {
-	const dispatch = useDispatch();
-
-	const { toggleCardVisibility } = bindActionCreators(
-		gameboardActionCreators,
-		dispatch,
-	);
-
 	const cardClickHandler = () => {
 		onCardClick(id);
-		toggleCardVisibility(id);
 	};
 
 	return (
