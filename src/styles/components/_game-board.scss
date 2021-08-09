@@ -22,10 +22,22 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        z-index: 1;
+
+        &.visible {
+          z-index: 10;
+        }
       }
 
-      .back img{
-        height: 100%;
+      .back {
+        z-index: 1;
+        img {
+          height: 100%;
+        }
+
+        &.visible {
+          z-index: 10;
+        }
       }
 
       &:hover {

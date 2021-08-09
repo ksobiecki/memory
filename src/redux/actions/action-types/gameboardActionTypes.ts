@@ -1,1 +1,1 @@
-export type GameboardActionType = { type: string; payload: number };
+export type GameboardActionType = { type: string; payload: string };

@@ -1,38 +1,46 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import cardBack from '../../../../images/card-back.jpg';
+import { gameboardActionCreators } from '../../../../redux';
 
 interface GameCardInterface {
-	onCardClick(color: string): void;
+	id: string;
 	color: string;
-	isSolved: boolean;
+	isVisible: boolean;
+	onCardClick(cardNumber: string): void;
 }
 
 const GameCard: React.FC<GameCardInterface> = ({
-	onCardClick,
+	id,
 	color,
-	isSolved,
+	isVisible,
+	onCardClick,
 }) => {
-	const [isFlipped, setIsFlipped] = useState(false);
+	const dispatch = useDispatch();
+
+	const { toggleCardVisibility } = bindActionCreators(
+		gameboardActionCreators,
+		dispatch,
+	);
 
 	const cardClickHandler = () => {
-		//do flip
-		if (!isSolved) {
-			onCardClick(color);
-		}
+		onCardClick(id);
+		toggleCardVisibility(id);
 	};
 
 	return (
 		<div className="game-card-container">
 			<div
-				className={`front card ${isFlipped ? 'flipped' : ''}`}
+				className={`front card ${isVisible ? 'visible' : ''}`}
 				style={{ backgroundColor: color }}
 			>
 				{color}
 			</div>
 			<div
 				onClick={cardClickHandler}
-				className={`back card ${isFlipped ? 'flipped' : ''}`}
+				className={`back card ${!isVisible ? 'visible' : ''}`}
 			>
 				<img src={cardBack} alt="Card back" />
 			</div>
